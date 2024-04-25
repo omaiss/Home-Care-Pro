@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'HomeCarePro.apps.HomecareproConfig',
-    'rest_framework'
+    'rest_framework',    
+    'homecareproFrontend.apps.HomecareprofrontendConfig'
 ]
 
 MIDDLEWARE = [
