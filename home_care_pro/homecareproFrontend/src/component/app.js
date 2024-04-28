@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import HomePage from './home'
 
 export default class App extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            istrue: false
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
-        window.location.href = 'templates/html/login.html';
+        this.setState({ istrue: true });
     }
 
-
     render() {
+        const { isLoggedin } = this.state;
+        if(this.state.istrue){
+            return (<div> <HomePage /></div>);
+        }
         return <div className="container" id="container">
             <div className="form-container sign-up">
                 <form>
