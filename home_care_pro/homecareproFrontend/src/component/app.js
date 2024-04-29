@@ -11,24 +11,24 @@ export default class App extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const url = this.state.isSignUp ? '' : '';
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                this.setState({ isLoggedin: true });
-            } else {
-                alert('Login failed. Please check your credentials.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        // event.preventDefault();
+        // const formData = new FormData(event.target);
+        // const url = this.state.isSignUp ? '' : '';
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     if (data.success) {
+        //         this.setState({ isLoggedin: true });
+        //     } else {
+        //         alert('Login failed. Please check your credentials.');
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        // });
     }
     
 
