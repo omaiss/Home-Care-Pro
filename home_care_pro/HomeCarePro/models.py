@@ -10,7 +10,9 @@ class User(models.Model):
     contact_no = models.CharField(max_length=20)    
     location = models.CharField(max_length=100)
 
-    # def query(self, ):
-        # if User.objects.filter(name=name).count() == 0?1:0
+    def check_password(self, password):
+        return self.password == password
 
-
+    @classmethod
+    def check_username_exists(cls, username):
+        return cls.objects.filter(username=username).exists()
