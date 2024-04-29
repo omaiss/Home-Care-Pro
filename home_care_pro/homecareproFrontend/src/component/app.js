@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import HomePage from './home'
 
 export default class App extends Component {
@@ -13,14 +12,27 @@ export default class App extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({ istrue: true });
+        const formData = new FormData(event.target);
+        const url = this.state.isSignUp ? '' : '';
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                this.setState({ isLoggedin: true });
+            } else {
+                alert('Login failed. Please check your credentials.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
+    
 
     render() {
-        const { isLoggedin } = this.state;
-        if(this.state.istrue){
-            return (<div> <HomePage /></div>);
-        }
         return <div className="container" id="container">
             <div className="form-container sign-up">
                 <form>
@@ -89,4 +101,3 @@ export default class App extends Component {
 }
 
 const appDiv = document.getElementById('app');
-render(<App />, appDiv);
