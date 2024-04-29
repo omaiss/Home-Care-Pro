@@ -18,6 +18,14 @@ class User(models.Model):
         return cls.objects.filter(username=username).exists()
 
 
+class Services(models.Model):
+    service_provider = models.ForeignKey(User, related_name='service_provider', on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=200)
+    price_per_hour = models.FloatField()
+    status = models.CharField(default='Active', max_length=20, choices=[('active', 'Active'), ('inactive', 'InActive')])
+    
+
 class Job(models.Model):
     homeowner = models.ForeignKey(User, related_name='homeowner_jobs', on_delete=models.CASCADE)
     service_provider = models.ForeignKey(User, related_name='service_provider_jobs', on_delete=models.CASCADE)
@@ -28,3 +36,21 @@ class Job(models.Model):
     status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('in_progress', 'In Progress'), ('completed', 'Completed')])
 
 
+class Feedback(models.Model):
+    job = models.OneToOneField(Job, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback for Job {self.job.id}"
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    payment_method = models.CharField(max_length=20, choices=[('cash', 'Cash'), ('credit_card', 'Credit Card')])
+    card_number = models.CharField(max_length=16, null=True, blank=True)
+    expiry_date = models.DateField(null=True, blank=True)
+    cvv = models.CharField(max_length=3, null=True, blank=True)
+
+    def __str__(self):
+        return f"Payment Option for {self.user.username}"

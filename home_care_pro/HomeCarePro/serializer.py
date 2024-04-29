@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+from .models import Services, Job, Feedback, Payment
 
 class User_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -49,3 +50,9 @@ class User_Signup(serializers.ModelSerializer):
         if User.objects.filter(contact_no=attrs['contact_no']).exists():
             raise serializers.ValidationError({'contact_no': 'Contact number already exists'})
         return attrs
+
+class ServicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Services
+        fields = ['id', 'title', 'description', 'price_per_hour', 'status', 'service_provider']
+

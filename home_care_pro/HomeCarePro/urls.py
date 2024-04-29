@@ -1,10 +1,13 @@
 from django.urls import path, include
-from .views import UserView
-from .views import UserLogin
-from .views import UserSignup
+from . import views
+
 
 urlpatterns = [
-    path('home', UserView.as_view()),
-    path('login', UserLogin.as_view()),
-    path('signup', UserSignup.as_view())
+    path('home', views.UserView.as_view()),
+    path('login', views.UserLogin.as_view()),
+    path('signup', views.UserSignup.as_view()),
+    path('services/', views.get_all_services),
+    path('services/add/', views.add_service),
+    path('services/<int:pk>/', views.update_service),
+    path('services/<int:pk>/delete/', views.delete_service)
 ]
