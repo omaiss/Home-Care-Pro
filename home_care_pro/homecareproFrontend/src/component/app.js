@@ -13,23 +13,23 @@ export default class App extends Component {
         event.preventDefault();
         const formData = new FormData(event.target);
         const url = this.state.isSignUp ? '' : '';
-        fetch(url, {
+        fetch(url = 'login', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                this.setState({ isLoggedin: true });
-            } else {
-                alert('Login failed. Please check your credentials.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.setState({ isLoggedin: true });
+                } else {
+                    alert('Login failed. Please check your credentials.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
-    
+
 
     render() {
         return <div className="container" id="container">
