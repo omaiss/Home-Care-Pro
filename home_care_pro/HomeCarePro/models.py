@@ -10,13 +10,6 @@ class User(models.Model):
     contact_no = models.CharField(max_length=20)    
     location = models.CharField(max_length=100)
 
-    def check_password(self, password):
-        return self.password == password
-
-    @classmethod
-    def check_username_exists(cls, username):
-        return cls.objects.filter(username=username).exists()
-
 
 class Services(models.Model):
     service_provider = models.ForeignKey(User, related_name='service_provider', on_delete=models.CASCADE)
@@ -42,8 +35,6 @@ class Feedback(models.Model):
     comment = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Feedback for Job {self.job.id}"
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -52,5 +43,3 @@ class Payment(models.Model):
     expiry_date = models.DateField(null=True, blank=True)
     cvv = models.CharField(max_length=3, null=True, blank=True)
 
-    def __str__(self):
-        return f"Payment Option for {self.user.username}"
