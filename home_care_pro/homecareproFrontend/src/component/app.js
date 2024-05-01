@@ -6,30 +6,21 @@ import HomePage from './home';
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const url = this.state.isSignUp ? '' : '';
-        fetch(url = 'login', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    this.setState({ isLoggedin: true });
-                } else {
-                    alert('Login failed. Please check your credentials.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    componentDidMount() {
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+    
+        registerBtn.addEventListener('click', () => {
+          container.classList.add('active');
+        });
+    
+        loginBtn.addEventListener('click', () => {
+          container.classList.remove('active');
+        });
     }
-
 
     render() {
         return <div className="container" id="container">
@@ -58,7 +49,7 @@ export default class App extends Component {
                 </form>
             </div>
             <div className="form-container sign-in">
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <h1>Sign In</h1>
                     <div className="social-icons">
                         <a href="#" className="icon">

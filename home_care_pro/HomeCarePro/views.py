@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .models import User, Services
-from .serializer import User_Serializer, UserLoginSerializer, ServicesSerializer, ServiceDeleteSerializer
+from .models import User, Services, Feedback, Job, Payment
+from .serializer import User_Serializer, UserLoginSerializer, ServicesSerializer, ServiceDeleteSerializer, FeedbackSerializer, JobSerializer, PaymentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -80,3 +80,59 @@ class ServicesDeleteView(APIView):
             return Response({'success': False, 'error': 'Service does not exist'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({'success': False, 'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class FeedbackView(APIView):
+    serializer_class = FeedbackSerializer
+    def get(self, request, format=None):
+        feedback = Feedback.objects.all()
+        serializer = self.serializer_class(feedback, many=True)
+        return Response(serializer.data)
+
+
+class AddFeedbackView(APIView):
+    serializer_class = FeedbackSerializer
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+
+
+class JobView(APIView):
+    serializer_class = JobSerializer
+    
+    def get(self, request, format=None):
+        jobs = Job.objects.all()
+        serializer = self.serializer_class(jobs, many=True)
+        return Response(serializer.data)
+
+
+class AddJobView(APIView):
+    serializer_class = JobSerializer
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+
+
+class PaymentView(APIView):
+    serializer_class = PaymentSerializer
+    
+    def get(self, request, format=None):
+        payments = Payment.objects.all()
+        serializer = self.serializer_class(payments, many=True)
+        return Response(serializer.data)
+
+
+class AddPaymentView(APIView):
+    serializer_class = PaymentSerializer
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    

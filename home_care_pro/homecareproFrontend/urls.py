@@ -3,4 +3,8 @@ from .views import index
 
 urlpatterns = [
     path('', index),
+    path('del_service', index),
+    path("home", index),
+    path('join', index),
+    path('create', index)
 ]

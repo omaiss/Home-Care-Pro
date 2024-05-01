@@ -10,5 +10,11 @@ urlpatterns = [
     path('signup', views.UserSignupView.as_view()),
     path('services/add_service', views.AddServices.as_view()),
     path('services/view_service', views.ServicesView.as_view()),
-    path('services/delete_service', views.ServicesDeleteView.as_view())
+    path('services/delete_service', views.ServicesDeleteView.as_view()), 
+    path('feedback/add_feedback', views.AddFeedbackView.as_view()),
+    path('feedback/view_feedback', views.FeedbackView.as_view()),
+    path('jobs/add_jobs', views.AddJobView.as_view()),
+    path('jobs/view_jobs', views.JobView.as_view()),
+    path('payments/view_payments', views.PaymentView.as_view()),
+    path('payments/add_payments', views.AddPaymentView.as_view())
 ]

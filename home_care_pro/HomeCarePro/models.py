@@ -1,6 +1,7 @@
 from django.db import models
 import string, random
 
+
 class User(models.Model):
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)

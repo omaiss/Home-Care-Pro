@@ -26,3 +26,20 @@ class ServiceDeleteSerializer(serializers.ModelSerializer):
         fields = ('id')
     
 
+class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = ('id', 'job', 'rating', 'comment', 'timestamp')
+        
+
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = ('id', 'homeowner', 'service_provider', 'date', 'start_time', 'end_time', 'job_details', 'status')
+        
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = ('id', 'user', 'payment_method', 'card_number', 'expiry_date', 'cvv')
+        
