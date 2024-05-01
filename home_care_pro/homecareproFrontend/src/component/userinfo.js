@@ -9,7 +9,7 @@ import FormControl from "@mui/material";
 import Radio from "@mui/material";
 import RadioGroup from "@mui/material";
 import FormControlLabel from "@mui/material";
-
+import HomePage from "./home";
 
 export default class UserInfo extends Component {
     constructor(props) {

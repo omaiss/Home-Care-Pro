@@ -32,8 +32,17 @@ export default class App extends Component {
 
 
     render() {
+    
         return <div className="container" id="container">
             <div className="form-container sign-up">
+
+              /*
+              ahsan was testing: homepage tag
+              
+               */
+
+
+
                 <form>
                     <h1>Create Account</h1>
                     <div className="social-icons">
@@ -90,15 +99,15 @@ export default class App extends Component {
                     </div>
                     <div className="toggle-panel toggle-right">
                         <h1>Hello, Friend!</h1>
-                        <p>Register with your personal details to use all of site features</p>
+                        <p>Register with your personal details to use the site</p>
                         <button className="hidden" id="register">Sign Up</button>
                     </div>
                 </div>
             </div>
         </div>;
     }
+    
 }
-
 const appDiv = document.getElementById('app');
 const root = createRoot(appDiv);
-root.render(<App />);
+root.render(<App />);   
