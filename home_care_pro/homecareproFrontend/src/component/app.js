@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createRoot } from "react-dom/client";
-import HomePage from './home';
+import Payment from "./payment";
+import PrimarySearchAppBar from "./primarysearchbar";
 
 
 export default class App extends Component {
