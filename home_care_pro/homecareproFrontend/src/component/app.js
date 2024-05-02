@@ -7,6 +7,7 @@ import Login_Signup from "./login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
+<<<<<<< HEAD
 export default function App(){
     return (
         <BrowserRouter>
@@ -19,8 +20,113 @@ export default function App(){
             </Routes>
         </BrowserRouter>
     );
-}
+=======
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const url = this.state.isSignUp ? '' : '';
+        fetch(url = 'login', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.setState({ isLoggedin: true });
+                } else {
+                    alert('Login failed. Please check your credentials.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+
+    render() {
+    
+        return <div className="container" id="container">
+            <div className="form-container sign-up">
+
+              /*
+              ahsan was testing: homepage tag
+              
+               */
+
+
+
+                <form>
+                    <h1>Create Account</h1>
+                    <div className="social-icons">
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div className="form-container sign-in">
+                <form onSubmit={this.handleSubmit}>
+                    <h1>Sign In</h1>
+                    <div className="social-icons">
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" className="icon">
+                            <i className="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your email password</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#">Forget Your Password?</a>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            <div className="toggle-container">
+                <div className="toggle">
+                    <div className="toggle-panel toggle-left">
+                        <h1>Welcome Back!</h1>
+                        <p>Enter your personal details to use all of site features</p>
+                        <button className="hidden" id="login">Sign In</button>
+                    </div>
+                    <div className="toggle-panel toggle-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Register with your personal details to use the site</p>
+                        <button className="hidden" id="register">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>;
+    }
+    
+>>>>>>> 6be967b2e9ec7fbce4a27b830eb950a71f8411f1
+}
 const appDiv = document.getElementById('app');
 const root = createRoot(appDiv);
-root.render(<App />);
+root.render(<App />);   
