@@ -9,15 +9,17 @@
 
 body {
  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
+ display: inherit;
 }
-
+.body_class{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 .container {
-    margin-top: 20%;
-    background-color: #fff;
+ margin-top: 10%;
+ background-color: #fff;
  border-radius: 30px;
  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
  position: relative;

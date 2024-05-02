@@ -1,9 +1,64 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 
 export default class Login_Signup extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            username: "",
+            password: "",
+            error: "",
+        };
     }
+      
+    handleSignUp = async (e) => {
+        e.preventDefault();
+        try {
+        const response = await fetch("/homecarepro/signup", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password,
+            }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+            this.props.history.push("/home");
+        } else {
+            this.setState({ error: data.detail });
+        }
+        } catch (error) {
+        console.error("Error signing up:", error);
+        }
+    };
+    
+    handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+        const response = await fetch("/homecarepro/login", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password,
+            }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+            this.props.history.push("/home");
+        } else {
+            this.setState({ error: data.detail });
+        }
+        } catch (error) {
+        console.error("Error logging in:", error);
+        }
+    };
 
     componentDidMount() {
         const container = document.getElementById('container');
@@ -20,7 +75,8 @@ export default class Login_Signup extends Component {
     }
 
     render() {
-        return <div className="container" id="container">
+        return <div className="body_class">
+        <div className="container" id="container">
             <div className="form-container sign-up">
                 <form>
                     <h1>Create Account</h1>
@@ -42,11 +98,13 @@ export default class Login_Signup extends Component {
                     <input type="text" placeholder="Name" />
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
-                    <button>Sign Up</button>
+                    <Link to=''>
+                    <button onSubmit={this.handleSignUp}>Sign Up</button>
+                    </Link>
                 </form>
             </div>
             <div className="form-container sign-in">
-                <form onSubmit={this.login_handle}>
+                <form>
                     <h1>Sign In</h1>
                     <div className="social-icons">
                         <a href="#" className="icon">
@@ -63,10 +121,10 @@ export default class Login_Signup extends Component {
                         </a>
                     </div>
                     <span>or use your email password</span>
-                    <input type="email" placeholder="Email" />
+                    <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <a href="#">Forget Your Password?</a>
-                    <button type="submit">Sign In</button>
+                    <button type="submit" onSubmit={this.handleLogin}>Sign In</button>
                 </form>
             </div>
             <div className="toggle-container">
@@ -83,6 +141,7 @@ export default class Login_Signup extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         </div>;
     }
 }
