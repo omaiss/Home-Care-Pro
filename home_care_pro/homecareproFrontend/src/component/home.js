@@ -1,11 +1,12 @@
 import Layout from "./layout";
 import React, { useEffect, useState } from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
+
 
 export default function HomePage() {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        // Fetch user data from localStorage
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
             setUserData(JSON.parse(storedUserData));
@@ -16,15 +17,26 @@ export default function HomePage() {
         <div>
             <Layout />
             <div className="user-profile">
-                <h1>Welcome, {userData ? userData.username : 'Guest'}!</h1>
                 {userData && (
-                    <div>
-                        <p>Email: {userData.email}</p>
-                        <p>User Type: {userData.user_type}</p>
-                        <p>Full Name: {userData.full_name}</p>
-                        <p>Contact Number: {userData.contact_no}</p>
-                        <p>Location: {userData.location}</p>
-                    </div>
+                    <Card variant="outlined" sx={{ maxWidth: 600, margin: 'auto', marginTop: 20, backgroundColor: '#f0f0f0' }}>
+                        <CardContent style={{padding: '20px'}}>
+                            <Typography variant="h2" component="div" color="secondary" style={{marginBottom:'3%'}}>
+                                Welcome {userData.full_name}
+                            </Typography>
+                            <Typography style={{marginBottom:'3%'}} variant="h5" color="primary" gutterBottom >
+                                Email: {userData.email}
+                            </Typography>
+                            <Typography variant="h5" color="primary" gutterBottom style={{marginBottom:'3%'}}>
+                                User Type: {userData.user_type}
+                            </Typography>
+                            <Typography variant="h5" color="primary" gutterBottom style={{marginBottom:'3%'}}>
+                                Contact Number: {userData.contact_no}
+                            </Typography>
+                            <Typography variant="h5" color="primary" gutterBottom style={{marginBottom:'3%'}}>
+                                Location: {userData.location}
+                            </Typography>
+                        </CardContent>
+                    </Card>
                 )}
             </div>
         </div>
