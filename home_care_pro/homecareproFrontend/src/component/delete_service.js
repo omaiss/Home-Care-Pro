@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 
-class DeleteService extends Component {
+export default class DeleteService extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +13,7 @@ class DeleteService extends Component {
     }
 
     componentDidMount() {
-        fetch('homecarepro/services/view_services')
+        fetch('/homecarepro/services/view_services')
             .then(response => response.json())
             .then(data => this.setState({ services: data }))
             .catch(error => console.error('Error fetching services:', error));
@@ -78,5 +79,3 @@ class DeleteService extends Component {
         );
     }
 }
-
-export default DeleteService;
