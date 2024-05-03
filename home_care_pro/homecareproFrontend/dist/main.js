@@ -15,7 +15,7 @@
   \******************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (14:8)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|     render(){\\n|         return(\\n>         <div>\\n|             <PrimarySearchAppBar />\\n|             <Payment />\");\n\n//# sourceURL=webpack://homecareprofrontend/./src/component/app.js?");
+eval("throw new Error(\"Module parse failed: Unexpected token (11:8)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| export default function App(){\\n|     return (\\n>         <BrowserRouter>\\n|             <Routes>\\n|                 <Route path=\\\"/\\\" element={<Login_Signup />} /> \");\n\n//# sourceURL=webpack://homecareprofrontend/./src/component/app.js?");
 
 /***/ }),
 
