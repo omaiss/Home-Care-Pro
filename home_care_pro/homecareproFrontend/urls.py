@@ -5,6 +5,7 @@ urlpatterns = [
     path('', index),
     path('del_service', index),
     path("home", index),
-    path('login', index)
+    path('login', index),
+    path('add_service', index)
 
 ]
