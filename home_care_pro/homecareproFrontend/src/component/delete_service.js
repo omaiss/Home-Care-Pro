@@ -13,7 +13,7 @@ export default class DeleteService extends Component {
     }
 
     componentDidMount() {
-        fetch('/homecarepro/services/view_services')
+        fetch('/homecarepro/services/view_service')
             .then(response => response.json())
             .then(data => this.setState({ services: data }))
             .catch(error => console.error('Error fetching services:', error));
@@ -21,14 +21,13 @@ export default class DeleteService extends Component {
 
     handleDelete = () => {
         const { serviceId } = this.state;
-        fetch(`homecarepro/services/delete_services/${serviceId}`, {
+        fetch(`/homecarepro/services/delete_service/${serviceId}`, {
             method: 'DELETE'
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 this.setState({ deleteMessage: 'Service deleted successfully' });
-                // Remove the deleted service from the list
                 this.setState(prevState => ({
                     services: prevState.services.filter(service => service.id !== serviceId)
                 }));
