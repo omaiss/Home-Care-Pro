@@ -5,6 +5,7 @@ import DeleteService from "./delete_service";
 import Login_Signup from "./login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Payment from "./payment";
+import AddService from "./AddService";
 
 export default function App(){
     return (
@@ -14,6 +15,7 @@ export default function App(){
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/del_service" element={<DeleteService />} />
                 <Route path="/payment" element={<Payment/>}/>
+                <Route path="/add_service" element={<AddService/>}/>
             </Routes>
         </BrowserRouter>
     );

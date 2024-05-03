@@ -10,7 +10,7 @@ urlpatterns = [
     path('signup', views.UserSignupView.as_view()),
     path('services/add_service', views.AddServices.as_view()),
     path('services/view_service', views.ServicesView.as_view()),
-    path('services/delete_service', views.ServicesDeleteView.as_view()), 
+    path('services/delete_service/<int:service_id>/', views.ServicesDeleteView.as_view(), name = 'delete_service'), 
     path('feedback/add_feedback', views.AddFeedbackView.as_view()),
     path('feedback/view_feedback', views.FeedbackView.as_view()),
     path('jobs/add_jobs', views.AddJobView.as_view()),

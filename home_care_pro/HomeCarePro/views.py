@@ -65,10 +65,16 @@ class AddServices(APIView):
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
+
         if serializer.is_valid():
-            serializer.save()
+            service = serializer.save(service_provider=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+        
+
+        print("Validation errors:", serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+   
 
 
 class ServicesDeleteView(APIView):
