@@ -36,12 +36,14 @@ const Login_Signup = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                navigate("/home");
+                localStorage.clear();
+                window.location.reload();
+                window.alert('SignUp successfull. You can login now :)')
             } else {
                 window.alert('Error storing information, check information again!')
             }
         } catch (error) {
-            console.error("Error signing up:", error);
+            window.alert("Error signing up:", error);
         }
     };
     
@@ -58,14 +60,15 @@ const Login_Signup = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                console.log(username + password);
+                localStorage.setItem('userData', JSON.stringify(data));
+                console.log(localStorage.getItem('userData'));
                 navigate("/home");
             } else {
                 window.alert('Error storing information, check information again!')
             }
         } catch (error) {
-                console.log(username + password);
-                console.error("Error logging in:", error);
+            console.log(username, password);
+            window.alert("Error logging in:", error);
         }
     };
 
