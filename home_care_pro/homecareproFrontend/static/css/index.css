@@ -18,15 +18,15 @@ body {
     flex-direction: column;
 }
 .container {
- margin-top: 10%;
+ margin-top: 5%;
  background-color: #fff;
  border-radius: 30px;
  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
  position: relative;
  overflow: hidden;
- width: 768px;
+ width: 1000px;
  max-width: 100%;
- min-height: 480px;
+ min-height: 700px;
 }
 
 .container p {
