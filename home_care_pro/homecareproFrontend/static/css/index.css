@@ -25,8 +25,8 @@ body {
  position: relative;
  overflow: hidden;
  width: 1000px;
- max-width: 100%;
  min-height: 700px;
+ max-width: 100%;
 }
 
 .container p {

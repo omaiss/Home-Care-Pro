@@ -36,6 +36,7 @@ const Login_Signup = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                console.log(username, password, full_name, user_type, email, location, contact_no);
                 localStorage.clear();
                 window.location.reload();
                 window.alert('SignUp successfull. You can login now :)')
@@ -43,7 +44,8 @@ const Login_Signup = () => {
                 window.alert('Error storing information, check information again!')
             }
         } catch (error) {
-            window.alert("Error signing up:", error);
+                console.log(username, password, full_name, user_type, email, location, contact_no);
+                window.alert("Error signing up:", error);
         }
     };
     

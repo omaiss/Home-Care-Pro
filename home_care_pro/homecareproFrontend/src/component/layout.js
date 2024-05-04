@@ -59,15 +59,19 @@ const Layout = () => {
           <li style={liStyles}>
             <Link to="/home" style={linkStyles}>Home</Link>
           </li>
+          {userData && userData.user_type === "service provider" && (
+            <>
+              <li style={liStyles}>
+                <Link to="/add_service" style={linkStyles}>Add Service</Link>
+              </li>
+              <li style={liStyles}>
+                <Link to="/del_service" style={linkStyles}>Delete Service</Link>
+              </li>
+            </>
+          )}
           <li style={liStyles}>
-            <Link to="/add_service" style={linkStyles}>Add Service</Link>
-          </li>
-          <li style={liStyles}>
-            <Link to="/del_service" style={linkStyles}>Delete Service</Link>
-          </li>
-          <li style={liStyles}>
-          <Link to='/home'>
-            {userData && <span style={{ color: "#fff" }}>Welcome, {userData.username}</span>}
+            <Link to='/home'>
+              {userData && <span style={{ color: "#fff" }}>Welcome, {userData.username}</span>}
             </Link>
             <Link to="/" style={{ ...linkStyles, ...hoverStyles, ...loginStyles }} onClick={emptyStorage}>
               Login/Signup

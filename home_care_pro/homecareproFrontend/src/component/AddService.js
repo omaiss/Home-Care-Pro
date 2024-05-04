@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextField, Button, Typography, Grid, MenuItem } from '@mui/material';
+import Layout from './layout';
 
 export default class AddService extends Component {
     constructor(props) {
@@ -9,18 +10,28 @@ export default class AddService extends Component {
             description: '',
             pricePerHour: '',
             status: 'active',
+            serviceProvider: '',
             successMessage: '',
             errorMessage: ''
         };
     }
 
+    componentDidMount() {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            this.setState({ serviceProvider: JSON.parse(storedUserData)});
+        }
+      }
+
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     };
+
     handleAddService = async () => {
+
         const { title, description, pricePerHour, status, serviceProvider } = this.state;
-    
+        console.log(this.state);
         const dataToSend = {
             title,
             description,
@@ -28,7 +39,8 @@ export default class AddService extends Component {
             status,
             service_provider: parseInt(serviceProvider),
         };
-    
+        console.log(dataToSend);
+
         try {
             const response = await fetch('/homecarepro/services/add_service', {
                 method: 'POST',
@@ -50,6 +62,9 @@ export default class AddService extends Component {
                     status: 'active',
                     serviceProvider: '',
                 });
+                console.log(this.state);
+                window.location.reload();
+                window.alert('SignUp successfull. You can login now :)')
             } else {
                 this.setState({ errorMessage: data.error || 'Failed to add service', successMessage: '' });
             }
@@ -65,6 +80,7 @@ export default class AddService extends Component {
 
         return (
             <div>
+                <Layout/>
                 <Typography variant="h4">Add New Service</Typography>
 
                 <Grid container spacing={2}>

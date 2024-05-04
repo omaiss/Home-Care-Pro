@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
+import Layout from './layout';
 
 export default class DeleteService extends Component {
 
@@ -43,6 +44,7 @@ export default class DeleteService extends Component {
 
         return (
             <div>
+                <Layout/>
                 <Typography variant="h4">Services</Typography>
                 {services.map(service => (
                     <div key={service.id}>
