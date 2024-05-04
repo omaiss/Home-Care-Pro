@@ -1,6 +1,7 @@
 import Layout from "./layout";
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
+import Chatbot from "./chat";
 
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
     return (
         <div>
             <Layout />
+            <Chatbot />
             <div className="user-profile">
                 {userData && (
                     <Card variant="outlined" sx={{ maxWidth: 600, margin: 'auto', marginTop: 20, backgroundColor: '#f0f0f0' }}>
