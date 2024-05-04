@@ -55,14 +55,14 @@ const Textarea = styled('textarea')({
 const Button = styled('button')({
   width: '100%',
   padding: '12px',
-  background: 'linear-gradient(to right, #A020F0, #8A2BE2)', // Changed to purple color
+  background: 'linear-gradient(to right, #A020F0, #8A2BE2)',
   color: '#fff',
   border: 'none',
   borderRadius: '8px',
   cursor: 'pointer',
   transition: 'background 0.3s ease',
   '&:hover': {
-    background: 'linear-gradient(to right, #8A2BE2, #7B68EE)', // Changed to purple color
+    background: 'linear-gradient(to right, #8A2BE2, #7B68EE)',
   },
 });
 
@@ -96,7 +96,7 @@ function Feedback() {
     // Add more service providers as needed
   };
 
-  const serviceProviderId = "12345"; \
+  const serviceProviderId = "12345";
 
   // State variables
   const [formData, setFormData] = useState({
