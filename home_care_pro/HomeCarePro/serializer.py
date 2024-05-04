@@ -15,6 +15,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
           
 
 class ServicesSerializer(serializers.ModelSerializer):
+    service_provider = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     class Meta:
         model = Services
         fields = ('id', 'title', 'description', 'price_per_hour', 'status', 'service_provider')

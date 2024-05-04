@@ -19,7 +19,8 @@ export default class AddService extends Component {
     componentDidMount() {
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
-            this.setState({ serviceProvider: JSON.parse(storedUserData)});
+            const userData = JSON.parse(storedUserData);
+            this.setState({ serviceProvider: userData.id});
         }
       }
 
@@ -64,7 +65,7 @@ export default class AddService extends Component {
                 });
                 console.log(this.state);
                 window.location.reload();
-                window.alert('SignUp successfull. You can login now :)')
+                window.alert('Service added successfully!')
             } else {
                 this.setState({ errorMessage: data.error || 'Failed to add service', successMessage: '' });
             }
@@ -81,9 +82,8 @@ export default class AddService extends Component {
         return (
             <div>
                 <Layout/>
-                <Typography variant="h4">Add New Service</Typography>
-
-                <Grid container spacing={2}>
+                <Typography marginLeft={'42%'} variant="h4">Add New Service</Typography>
+                <Grid container spacing={2}  marginLeft={'30%'} textAlign={'center'} maxWidth={'720px'}>
                     <Grid item xs={12}>
                         <TextField
                             label="Title"

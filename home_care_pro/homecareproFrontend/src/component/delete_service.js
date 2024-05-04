@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button, Typography, Grid } from '@mui/material';
+import { TextField, Button, Typography, Grid, Box } from '@mui/material';
 import Layout from './layout';
 
 export default class DeleteService extends Component {
@@ -14,6 +14,10 @@ export default class DeleteService extends Component {
     }
 
     componentDidMount() {
+        this.fetchServices();
+    }
+
+    fetchServices = () => {
         fetch('/homecarepro/services/view_service')
             .then(response => response.json())
             .then(data => this.setState({ services: data }))
@@ -29,9 +33,7 @@ export default class DeleteService extends Component {
         .then(data => {
             if (data.success) {
                 this.setState({ deleteMessage: 'Service deleted successfully' });
-                this.setState(prevState => ({
-                    services: prevState.services.filter(service => service.id !== serviceId)
-                }));
+                window.location.reload();
             } else {
                 this.setState({ deleteMessage: data.error });
             }
@@ -43,40 +45,44 @@ export default class DeleteService extends Component {
         const { services, serviceId, deleteMessage } = this.state;
 
         return (
-            <div>
+            <Box textAlign="center">
                 <Layout/>
-                <Typography variant="h4">Services</Typography>
-                {services.map(service => (
-                    <div key={service.id}>
-                        <Typography variant="h6">{service.title}</Typography>
-                        <Typography>{service.description}</Typography>
-                        <Typography>{`Price per hour: ${service.price_per_hour}`}</Typography>
-                        <Typography>{`Status: ${service.status}`}</Typography>
-                        <Typography>{`Service Provider: ${service.service_provider}`}</Typography>
-                        <hr />
-                    </div>
-                ))}
-                <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                        <TextField 
-                            label="Enter Service ID to Delete" 
-                            variant="outlined" 
-                            value={serviceId} 
-                            onChange={e => this.setState({ serviceId: e.target.value })}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <Button 
-                            variant="contained" 
-                            color="error" 
-                            onClick={this.handleDelete}
-                        >
-                            Delete Service
-                        </Button>
-                    </Grid>
-                </Grid>
+                <Typography variant="h3" color="primary" >Services</Typography>
+                {services.length === 0 ? (
+                    <Typography variant="h5" style={{marginTop:'20px', color:'red'}}>No services found<br></br>
+                    Go to Add_Service to create new services
+                    </Typography>
+                ) : (
+                    services.map(service => (
+                        <Box key={service.id} my={2}>
+                            <Typography variant="h6">ID: {service.id}</Typography>
+                            <Typography variant="h6">{service.title}</Typography>
+                            <Typography>{service.description}</Typography>
+                            <Typography>{`Price per hour: ${service.price_per_hour}`}</Typography>
+                            <Typography>{`Status: ${service.status}`}</Typography>
+                            <Typography>{`Service Provider: ${service.service_provider}`}</Typography>                            
+                            <hr />
+                        </Box>
+                    ))
+                )}
+                <TextField 
+                    style={{marginTop:'20px'}}
+                    label="Enter Service ID to Delete" 
+                    variant="outlined" 
+                    value={serviceId} 
+                    onChange={e => this.setState({ serviceId: e.target.value })}
+                />
+                <br></br>
+                <Button 
+                    style={{marginTop:'20px'}}
+                    variant="contained" 
+                    color="primary" 
+                    onClick={this.handleDelete}
+                >
+                    Delete Service
+                </Button>
                 {deleteMessage && <Typography>{deleteMessage}</Typography>}
-            </div>
+            </Box>
         );
     }
 }
