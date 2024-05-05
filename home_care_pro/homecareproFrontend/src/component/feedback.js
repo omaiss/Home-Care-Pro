@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
+import Layout from './layout';
 
 
 const Container = styled('div')({
@@ -120,6 +121,8 @@ function Feedback() {
   };
 
   return (
+    <div>
+    <Layout />
     <Container className="container">
       <Title>Feedback</Title>
       <Form id="feedback-form" onSubmit={handleSubmit}>
@@ -161,6 +164,7 @@ function Feedback() {
         ))}
       </ReviewsList>
     </Container>
+    </div>
   );
 }
 
