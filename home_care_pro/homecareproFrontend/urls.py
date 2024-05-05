@@ -13,4 +13,5 @@ urlpatterns = [
     path('search_service', index),
     path('order_home_owner', index),
     path('current_orders', index),
+    path('order_serviceprovider', index),
 ]

@@ -206,6 +206,35 @@ class AddJobView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class AllJobsView(APIView):
+    serializer_class = JobSerializer
+
+    def get(self, request, format=None):
+        jobs = Job.objects.all()
+        serializer = self.serializer_class(jobs, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class CompleteJobView(APIView):
+    serializer_class = JobSerializer
+    
+    def patch(self, request, job_id, format=None):
+        try:
+            job = Job.objects.get(id=job_id)
+            print(job)
+
+            job.status = 'completed'  
+            job.save()  
+            serializer = self.serializer_class(job)  
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Job.DoesNotExist:
+            return Response({'error': 'Job not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 class PaymentView(APIView):
     serializer_class = PaymentSerializer
     
