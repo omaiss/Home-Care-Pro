@@ -9,4 +9,5 @@ urlpatterns = [
     path('home', index),
     path('payment', index),
     path('chat', index),
+    path('updateUser', index),
 ]

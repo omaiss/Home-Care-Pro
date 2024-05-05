@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Payment from "./payment";
 import AddService from "./AddService";
 import Chatbot from "./chat";
+import UpdateAccount from "./updateUser";
 
 export default function App(){
     return (
@@ -18,6 +19,7 @@ export default function App(){
                 <Route path="/payment" element={<Payment/>}/>
                 <Route path="/add_service" element={<AddService/>}/>
                 <Route path="/chat" element= {<Chatbot/>}/>
+                <Route path='/updateUser' element={<UpdateAccount />} />
             </Routes>
         </BrowserRouter>
     );
@@ -25,9 +27,3 @@ export default function App(){
 const appDiv = document.getElementById('app');
 const root = createRoot(appDiv);
 root.render(<App />);   
-
-/*
-<Route path="/" element={<Layout/>}>
-<Route index element={<HomePage/>}/>
-<Route path="/del_service" element={<DeleteService />} />
-*/

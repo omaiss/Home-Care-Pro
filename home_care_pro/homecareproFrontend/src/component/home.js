@@ -20,7 +20,7 @@ export default function HomePage() {
             <Chatbot />
             <div className="user-profile">
                 {userData && (
-                    <Card variant="outlined" sx={{ maxWidth: 600, margin: 'auto', marginTop: 20, backgroundColor: '#f0f0f0' }}>
+                    <Card variant="outlined" sx={{margin: 'auto', marginTop: 20}}>
                         <CardContent style={{padding: '20px'}}>
                             <Typography variant="h2" component="div" color="secondary" style={{marginBottom:'3%'}}>
                                 Welcome {userData.full_name}
@@ -44,10 +44,3 @@ export default function HomePage() {
         </div>
     );
 }
-
-
-
-/*<Route path="/layout" element={<Layout/>} >
-<Route path="/home" element={<HomePage />} />
-</Route>
-*/

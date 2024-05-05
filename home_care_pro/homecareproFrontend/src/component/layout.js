@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import Notification from "./notification";
 
 const navStyles = {
   backgroundColor: "#333",
@@ -59,6 +60,13 @@ const Layout = () => {
           <li style={liStyles}>
             <Link to="/home" style={linkStyles}>Home</Link>
           </li>
+          {userData && userData.user_type === "home owner" && (
+            <>
+          <li>
+            <Link to='/updateUser' style={linkStyles}>Update Account</Link>
+          </li>
+          </>
+          )}
           {userData && userData.user_type === "service provider" && (
             <>
               <li style={liStyles}>
@@ -76,6 +84,9 @@ const Layout = () => {
             <Link to="/" style={{ ...linkStyles, ...hoverStyles, ...loginStyles }} onClick={emptyStorage}>
               Login/Signup
             </Link>
+          </li>
+          <li style={{ ...linkStyles}}> 
+            <Notification/>
           </li>
         </ul>
       </nav>

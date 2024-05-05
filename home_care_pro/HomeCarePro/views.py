@@ -19,6 +19,25 @@ class UserView(APIView):
         return Response(serializer.data)
 
 
+class UserUpdateView(APIView):
+    serializer_class = User_Serializer
+
+    def patch(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+        user_id = request.data.get('id')
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return JsonResponse({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(user, data=request.data, partial=True)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+
 
 class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
@@ -51,6 +70,31 @@ class UserSignupView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
+class UserDetailView(APIView):
+    serializer_class = User_Serializer
+            
+    def get(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = self.serializer_class(user)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = self.serializer_class(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = self.serializer_class(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ServicesView(APIView):
     serializer_class = ServicesSerializer
      
@@ -74,9 +118,7 @@ class AddServices(APIView):
 
         print("Validation errors:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
    
-
 
 class ServicesDeleteView(APIView):
     serializer_class = ServiceDeleteSerializer
