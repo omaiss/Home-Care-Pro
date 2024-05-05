@@ -86,6 +86,9 @@ const Layout = () => {
               <li style={liStyles}>
                 <Link to="/del_service" style={linkStyles}>Delete Service</Link>
               </li>
+              <li style={liStyles}>
+                <Link to="/order_serviceprovider" style={linkStyles}>See Orders</Link>
+              </li>
             </>
           )}
           <li style={liStyles}>

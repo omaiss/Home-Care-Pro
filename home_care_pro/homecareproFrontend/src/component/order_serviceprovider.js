@@ -70,6 +70,7 @@ export default class AllOrders extends Component {
     const { jobs, loading, errorMessage } = this.state;
 
     return (
+      <div margin={'0 auto'} textAlign={'center'}>
       <Box textAlign="center">
         <Layout />
         <Typography variant="h3" color="primary">
@@ -81,7 +82,7 @@ export default class AllOrders extends Component {
         ) : errorMessage ? (
           <Alert severity="error">{errorMessage}</Alert>
         ) : (
-          <Grid container spacing={2} justifyContent="center">
+          <Grid container spacing={2} maxWidth={'720px'} margin={'0 auto'} textAlign={'center'}>
             {jobs.map((job) => (
               <Grid item key={job.id} xs={12} md={6}>
                 <Box border={1} borderRadius={2} padding={2}>
@@ -105,6 +106,7 @@ export default class AllOrders extends Component {
           </Grid>
         )}
       </Box>
+      </div>
     );
   }
 }
