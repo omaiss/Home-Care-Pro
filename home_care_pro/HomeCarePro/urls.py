@@ -19,5 +19,7 @@ urlpatterns = [
     path('payments/view_payments', views.PaymentView.as_view()),
     path('payments/add_payments', views.AddPaymentView.as_view()),
     path('services/search_service', views.SearchServices.as_view()),
+    path('jobs/all_jobs', views.AllJobsView.as_view(), name='all_jobs'),
+    path('jobs/complete_job/<int:job_id>', views.CompleteJobView.as_view(), name='complete_job'),
 
 ]
