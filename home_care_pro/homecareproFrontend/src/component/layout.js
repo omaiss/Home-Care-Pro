@@ -60,11 +60,11 @@ const Layout = () => {
           <li style={liStyles}>
             <Link to="/home" style={linkStyles}>Home</Link>
           </li>
-          {userData && userData.user_type === "home owner" && (
-            <>
           <li>
             <Link to='/updateUser' style={linkStyles}>Update Account</Link>
           </li>
+          {userData && userData.user_type === "home owner" && (
+            <>
           </>
           )}
           {userData && userData.user_type === "service provider" && (
@@ -82,7 +82,7 @@ const Layout = () => {
               {userData && <span style={{ color: "#fff" }}>Welcome, {userData.username}</span>}
             </Link>
             <Link to="/" style={{ ...linkStyles, ...hoverStyles, ...loginStyles }} onClick={emptyStorage}>
-              Login/Signup
+              LogOut
             </Link>
           </li>
           <li style={{ ...linkStyles}}> 
