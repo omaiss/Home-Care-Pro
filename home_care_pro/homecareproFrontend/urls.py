@@ -10,4 +10,7 @@ urlpatterns = [
     path('payment', index),
     path('chat', index),
     path('updateUser', index),
+    path('search_service', index),
+    path('order_home_owner', index),
+    path('current_orders', index),
 ]

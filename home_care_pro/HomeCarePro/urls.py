@@ -15,7 +15,9 @@ urlpatterns = [
     path('feedback/add_feedback', views.AddFeedbackView.as_view()),
     path('feedback/view_feedback', views.FeedbackView.as_view()),
     path('jobs/add_jobs', views.AddJobView.as_view()),
-    path('jobs/view_jobs', views.JobView.as_view()),
+    path('jobs/view_jobs/<int:homeowner_id>/', views.JobView.as_view(), name='view_jobs'),
     path('payments/view_payments', views.PaymentView.as_view()),
-    path('payments/add_payments', views.AddPaymentView.as_view())
+    path('payments/add_payments', views.AddPaymentView.as_view()),
+    path('services/search_service', views.SearchServices.as_view()),
+
 ]

@@ -116,9 +116,43 @@ class AddServices(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-        print("Validation errors:", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-   
+    
+    
+class SearchServices(APIView):
+    serializer_class = ServicesSerializer
+
+    def get(self, request, format=None):
+        try:
+            title = request.query_params.get('title', None)
+            max_price = request.query_params.get('max_price', None)
+            status_filter = request.query_params.get('status', None)
+
+            queryset = Services.objects.all()
+
+            if title:
+                queryset = queryset.filter(title__icontains=title)
+
+            if max_price:
+                try:
+                    max_price = float(max_price)
+                except ValueError:
+                    raise ValueError("Invalid max_price value")
+                queryset = queryset.filter(price_per_hour__lte=max_price)
+
+            if status_filter and status_filter != 'all':
+                queryset = queryset.filter(status=status_filter)
+
+            serializer = self.serializer_class(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            print("Error in SearchServices:", e) 
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
 
 class ServicesDeleteView(APIView):
     serializer_class = ServiceDeleteSerializer
@@ -154,21 +188,26 @@ class AddFeedbackView(APIView):
 
 class JobView(APIView):
     serializer_class = JobSerializer
-    
-    def get(self, request, format=None):
-        jobs = Job.objects.all()
+
+    def get(self, request, homeowner_id, format=None):
+        jobs = Job.objects.filter(homeowner=homeowner_id)
         serializer = self.serializer_class(jobs, many=True)
-        return Response(serializer.data)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class AddJobView(APIView):
     serializer_class = JobSerializer
+    
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+            job = serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)  
+        
+        print("Validation errors:", serializer.errors)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PaymentView(APIView):
