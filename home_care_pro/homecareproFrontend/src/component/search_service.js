@@ -81,7 +81,7 @@ export default class SearchService extends Component {
           Search Services
         </Typography>
 
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={2} margin={"0 auto"} maxWidth={"720px"}>
           <Grid item xs={12} md={4}>
             <TextField
               label="Service Title"
@@ -128,10 +128,6 @@ export default class SearchService extends Component {
           Search
         </Button>
 
-        {searchMessage && (
-          <Typography style={{ marginTop: '20px' }}>{searchMessage}</Typography>
-        )}
-
         {services.length > 0 ? (
           services.map((service) => (
             <Box key={service.id} my={2}>
@@ -144,7 +140,7 @@ export default class SearchService extends Component {
             </Box>
           ))
         ) : (
-          <Typography>No services found</Typography>
+          <Typography marginTop={"5%"} variant='h3'>No services found</Typography>
         )}
       </Box>
     );

@@ -39,8 +39,9 @@ class Feedback(models.Model):
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    service = models.ForeignKey(Services, on_delete=models.CASCADE)
     payment_method = models.CharField(max_length=20, choices=[('cash', 'Cash'), ('credit_card', 'Credit Card')])
     card_number = models.CharField(max_length=16, null=True, blank=True)
     expiry_date = models.DateField(null=True, blank=True)
     cvv = models.CharField(max_length=3, null=True, blank=True)
-
+    

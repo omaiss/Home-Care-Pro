@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
 
-// Styled components
+
 const Container = styled('div')({
     maxWidth: '600px',
     margin: '20px auto',
@@ -87,25 +87,20 @@ const Strong = styled('strong')({
   fontWeight: 'bold',
 });
 
-// Main component
 function Feedback() {
-  // Omais Bro Make Add the logic of sevice provider id here
   const serviceProviderData = {
     "12345": "Jhonny Plumber",
     "54321": "Jhonny Electrician"
-    // Add more service providers as needed
   };
 
   const serviceProviderId = "12345";
 
-  // State variables
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  // Omais retrieve data from data base of reviews here based on service provider id
   const [feedbackList, setFeedbackList] = useState([
     { serviceProviderId: "12345", name: "John Doe", email: "john@example.com", message: "Great service!" },
     { serviceProviderId: "54321", name: "Jane Smith", email: "jane@example.com", message: "Amazing experience!" },
@@ -113,7 +108,7 @@ function Feedback() {
 
   ]);
 
-  // Function to handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newFeedback = {

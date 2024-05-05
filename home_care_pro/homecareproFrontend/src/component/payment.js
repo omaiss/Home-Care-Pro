@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, TextField, Button, Container, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Layout from "./layout";
+import { useNavigate } from "react-router-dom";
 
 const StyledContainer = styled(Container)({
   paddingTop: (theme) => theme.spacing(4),
@@ -27,13 +28,23 @@ export default function Payment() {
     expiry_date: "",
     cvv: "",
   });
+
   const [userData, setUserData] = useState(null);
+  const [serviceData, setServiceData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-      const storedUserData = localStorage.getItem('userData');
-      if (storedUserData) {
-          setUserData(JSON.parse(storedUserData));
-      }
+    const storedUserData = localStorage.getItem('userData');
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      setUserData(userData);
+    }
+
+    const storedServiceData = localStorage.getItem('serviceData');
+    if (storedServiceData) {
+      const serviceData = JSON.parse(storedServiceData);
+      setServiceData(serviceData);
+    }
   }, []);
 
   const handleChange = (e) => {
@@ -44,10 +55,41 @@ export default function Payment() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add logic to handle payment submission
-  };
+    console.log(userData);
+    console.log(serviceData);
+    const dataToSend = {
+      user: userData.id,
+      service: serviceData.service_provider,
+      card_number: paymentInfo.card_number,
+      cvv: paymentInfo.cvv,
+      expiry_date: paymentInfo.expiry_date,
+      payment_method: paymentInfo.payment_method
+    };
+    console.log(dataToSend);
+    try {
+      const response = await fetch("/homecarepro/payments/add_payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      });
+  
+      if (response.ok) {
+        window.location.reload();
+        window.alert('Payment submitted successfully.');
+        navigate('/home');
+      } else {
+        window.alert('Error storing payment information. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting payment:', error);
+      window.alert('Error submitting payment. Please try again later.');
+    }
+  };  
+
 
   return (
     <div>
@@ -73,13 +115,22 @@ export default function Payment() {
               />
             </Grid>
             <Grid item xs={6}>
-              <StyledTextField
-                fullWidth
-                label="Expiry Date"
-                name="expiry_date"
-                value={paymentInfo.expiry_date}
-                onChange={handleChange}
-              />
+            <TextField
+              fullWidth
+              label="Expiry Date"
+              name="expiry_date"
+              type="date"
+              value={paymentInfo.expiry_date}
+              onChange={handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                inputProps: {
+                  min: 'YYYY-MM',
+                },
+              }}
+            />
             </Grid>
             <Grid item xs={6}>
               <StyledTextField

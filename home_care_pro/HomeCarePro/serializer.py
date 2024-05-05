@@ -42,5 +42,5 @@ class JobSerializer(serializers.ModelSerializer):
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ('id', 'user', 'payment_method', 'card_number', 'expiry_date', 'cvv')
+        fields = ('id', 'service', 'user', 'payment_method', 'card_number', 'expiry_date', 'cvv')
         

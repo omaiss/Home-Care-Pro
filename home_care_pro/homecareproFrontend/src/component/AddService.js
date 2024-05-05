@@ -80,10 +80,10 @@ export default class AddService extends Component {
         const { title, description, pricePerHour, status, successMessage, errorMessage } = this.state;
 
         return (
-            <div>
+            <div textAlign={'center'} margin={"0 auto"}>
                 <Layout/>
-                <Typography marginLeft={'42%'} variant="h4">Add New Service</Typography>
-                <Grid container spacing={2}  marginLeft={'30%'} textAlign={'center'} maxWidth={'720px'}>
+                <Typography variant="h4" textAlign={'center'}>Add New Service</Typography>
+                <Grid container spacing={2} textAlign={'center'} margin={"0 auto"} maxWidth={'720px'}>
                     <Grid item xs={12}>
                         <TextField
                             label="Title"

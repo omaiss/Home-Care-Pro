@@ -27,7 +27,6 @@ export default function App(){
                 <Route path='/search_service' element={<SearchService />} />
                 <Route path='/order_home_owner' element={<OrderHomeowner />} />
                 <Route path='/current_orders' element={<CurrentOrders />} />
-
             </Routes>
         </BrowserRouter>
     );

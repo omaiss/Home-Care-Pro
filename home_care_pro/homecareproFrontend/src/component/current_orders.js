@@ -51,8 +51,9 @@ export default class CurrentOrders extends Component {
     const { orders, loading, errorMessage } = this.state;
 
     return (
-      <Box textAlign="center">
-        <Layout />
+      <div>
+      <Layout />
+      <Box textAlign="center" margin={"0 auto"} maxWidth={"720px"}>
         <Typography variant="h3" color="primary">
           Current Orders
         </Typography>
@@ -66,7 +67,7 @@ export default class CurrentOrders extends Component {
             {orders.map((order) => (
               <Grid item key={order.id} xs={12} md={6}>
                 <Box border={1} borderRadius={2} padding={2}>
-                  <Typography variant="h6">Job ID: {order.id}</Typography>
+                  <Typography variant="h6">Job Details:</Typography>
                   <Typography>Date: {order.date}</Typography>
                   <Typography>Start Time: {order.start_time}</Typography>
                   <Typography>End Time: {order.end_time}</Typography>
@@ -78,6 +79,7 @@ export default class CurrentOrders extends Component {
           </Grid>
         )}
       </Box>
+      </div>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import Notification from "./notification";
+import { useNavigate } from "react-router-dom";
 
 const navStyles = {
   backgroundColor: "#333",
@@ -41,7 +42,7 @@ const hoverStyles = {
 
 const Layout = () => {
   const [userData, setUserData] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const storedUserData = localStorage.getItem('userData');
     if (storedUserData) {
@@ -51,6 +52,7 @@ const Layout = () => {
 
   const emptyStorage = (e) =>{
     localStorage.clear();
+    console.clear();
   }
 
   return (
@@ -65,6 +67,15 @@ const Layout = () => {
           </li>
           {userData && userData.user_type === "home owner" && (
             <>
+            <li style={liStyles}>
+              <Link to="/order_home_owner" style={linkStyles}>Order Now</Link>
+            </li>
+            <li style={liStyles}>
+              <Link to="/current_orders" style={linkStyles}>Current Orders</Link>
+            </li>
+            <li style={liStyles}>
+              <Link to="/search_service" style={linkStyles}>Search Services</Link>
+            </li>
           </>
           )}
           {userData && userData.user_type === "service provider" && (

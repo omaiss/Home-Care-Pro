@@ -66,15 +66,16 @@ const UpdateAccount = () => {
   
   
   return (
-    <>
+    <div margin={"0 auto"}>
       <style>
         {`
           .user-details {
+            margin: 0 auto;
             margin-bottom: 20px;
+            margin-top: 20px;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #f9f9f9;
+            color: black;
+            text-align: center;
           }
 
           .user-details p {
@@ -87,7 +88,7 @@ const UpdateAccount = () => {
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #fff;
+            background-color: #7fb7b6;
           }
 
           .update-account-form label {
@@ -160,7 +161,7 @@ const UpdateAccount = () => {
           <button type="submit">Update Account</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

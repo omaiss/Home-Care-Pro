@@ -114,8 +114,6 @@ class AddServices(APIView):
             serializer.service_provider = request.user
             service = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
@@ -204,9 +202,7 @@ class AddJobView(APIView):
         if serializer.is_valid():
             job = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)  
-        
         print("Validation errors:", serializer.errors)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
