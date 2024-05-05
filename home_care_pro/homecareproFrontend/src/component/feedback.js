@@ -96,7 +96,7 @@ function Feedback() {
     // Add more service providers as needed
   };
 
-  const serviceProviderId = "12345"; \
+  const serviceProviderId = "12345";
 
   // State variables
   const [formData, setFormData] = useState({
