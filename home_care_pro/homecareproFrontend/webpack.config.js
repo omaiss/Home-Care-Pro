@@ -16,6 +16,18 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "images/",
+            },
+          },
+        ],
+      },
     ],
   },
   optimization: {
@@ -24,7 +36,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        // This has effect on the react lib size
         NODE_ENV: JSON.stringify("production"),
       },
     }),

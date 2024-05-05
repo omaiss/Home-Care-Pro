@@ -2,7 +2,7 @@ import Layout from "./layout";
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import Chatbot from "./chat";
-
+import homecareproImage from '../../static/images/homecarepro.jpeg'; 
 
 export default function HomePage() {
     const [userData, setUserData] = useState(null);
@@ -18,9 +18,9 @@ export default function HomePage() {
         <div>
             <Layout />
             <Chatbot />
-            <div className="user-profile">
+            <div>
                 {userData && (
-                    <Card variant="outlined" sx={{margin: 'auto', marginTop: 20}}>
+                    <Card sx={{margin: 'auto', marginTop: '20px', display:'flex', backgroundColor:"transparent", border:'none'}}>
                         <CardContent style={{padding: '20px'}}>
                             <Typography variant="h2" component="div" color="secondary" style={{marginBottom:'3%'}}>
                                 Welcome {userData.full_name}
@@ -38,6 +38,7 @@ export default function HomePage() {
                                 Location: {userData.location}
                             </Typography>
                         </CardContent>
+                        <img src={homecareproImage} alt="Homecarepro" style={{ marginLeft:'35%', width:'600px', height:'700px'}} />
                     </Card>
                 )}
             </div>
