@@ -12,6 +12,7 @@ import SearchService from "./search_service";
 import OrderHomeowner from "./order_homeowner";
 import CurrentOrders from "./current_orders";
 import OrderServiceProvider from "./order_serviceprovider";
+import Feedback from "./feedback";
 
 export default function App(){
     return (
@@ -28,7 +29,7 @@ export default function App(){
                 <Route path='/order_home_owner' element={<OrderHomeowner />} />
                 <Route path='/current_orders' element={<CurrentOrders />} />
                 <Route path='/order_serviceprovider' element={<OrderServiceProvider />} />
-
+                <Route path="/feedback" element= {<Feedback/>}/>
             </Routes>
         </BrowserRouter>
     );

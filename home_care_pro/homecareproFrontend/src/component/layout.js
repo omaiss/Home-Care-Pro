@@ -76,6 +76,9 @@ const Layout = () => {
             <li style={liStyles}>
               <Link to="/search_service" style={linkStyles}>Search Services</Link>
             </li>
+            <li style={liStyles}>
+                <Link to="/feedback" style={linkStyles}>Feedback</Link>
+            </li>
           </>
           )}
           {userData && userData.user_type === "service provider" && (
@@ -88,6 +91,9 @@ const Layout = () => {
               </li>
               <li style={liStyles}>
                 <Link to="/order_serviceprovider" style={linkStyles}>See Orders</Link>
+              </li>
+              <li style={liStyles}>
+                <Link to="/feedback" style={linkStyles}>Feedback</Link>
               </li>
             </>
           )}

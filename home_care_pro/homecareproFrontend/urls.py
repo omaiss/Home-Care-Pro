@@ -6,6 +6,7 @@ urlpatterns = [
     path('del_service', index),
     path('login', index),
     path('add_service', index),
+    path('feedback', index),
     path('home', index),
     path('payment', index),
     path('chat', index),
